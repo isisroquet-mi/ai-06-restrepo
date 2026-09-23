@@ -387,6 +387,183 @@ $$
 }
 $$
 
+## 9. Extensión propuesta: automatización de tareas intermedias
+
+El modelo base supone que la automatización avanza desde las tareas de menor índice hacia las de mayor índice. Por ello, existe un único umbral \(I^*\) que separa las tareas realizadas por capital de aquellas realizadas por trabajo:
+
+\[
+i\leq I^*
+\quad\Rightarrow\quad
+\text{capital},
+\]
+
+\[
+i>I^*
+\quad\Rightarrow\quad
+\text{trabajo}.
+\]
+
+Esta estructura implica que las tareas automatizadas se encuentran siempre en la parte inferior del continuo de tareas. El propio paper reconoce esta restricción y señala que, en la práctica, la automatización también puede concentrarse en tareas intermedias, aunque incorporar este patrón hace más difícil mantener una trayectoria de crecimiento balanceado.
+
+### Motivación
+
+Una posible extensión consiste en permitir que la automatización no ocurra únicamente desde abajo, sino sobre un **intervalo intermedio de tareas**.
+
+En lugar de un único umbral,
+
+\[
+I^*,
+\]
+
+se introduce un intervalo de automatización
+
+\[
+[I_L,I_H],
+\]
+
+tal que
+
+\[
+i\in[I_L,I_H]
+\quad\Rightarrow\quad
+\text{capital},
+\]
+
+mientras que las tareas fuera de dicho intervalo permanecen realizadas por trabajo:
+
+\[
+i<I_L
+\quad\text{o}\quad
+i>I_H
+\quad\Rightarrow\quad
+\text{trabajo}.
+\]
+
+La asignación de tareas pasaría entonces de
+
+\[
+\boxed{
+\text{capital}
+\;|\;
+\text{trabajo}
+}
+\]
+
+a una estructura del tipo
+
+\[
+\boxed{
+\text{trabajo}
+\;|\;
+\text{capital}
+\;|\;
+\text{trabajo}
+}.
+\]
+
+### Pregunta
+
+La extensión busca responder:
+
+\[
+\boxed{
+\text{¿Cómo cambian los efectos de la automatización sobre salarios,
+empleo y participación laboral cuando las tareas automatizadas
+son intermedias y no las de menor índice?}
+}
+\]
+
+### Cambio respecto al benchmark
+
+En el modelo original, un aumento de automatización desplaza el umbral \(I^*\) y reduce de manera continua el conjunto de tareas realizadas por trabajo.
+
+Con automatización intermedia, el conjunto de tareas laborales ya no es necesariamente continuo. La medida de tareas realizadas por trabajo sería
+
+\[
+(I_L-(N-1))+(N-I_H),
+\]
+
+mientras que la medida automatizada sería
+
+\[
+I_H-I_L.
+\]
+
+Por tanto, el efecto de la automatización ya no depende solamente de cuánto aumenta la medida de tareas realizadas por capital, sino también de **qué parte del continuo de tareas es automatizada**.
+
+### Hipótesis
+
+La hipótesis principal es que el efecto desplazamiento puede ser más heterogéneo que en el benchmark.
+
+Si las tareas intermedias concentran una parte importante del empleo, un aumento en
+
+\[
+I_H-I_L
+\]
+
+podría generar una caída relevante en empleo y participación laboral, incluso sin automatizar las tareas más simples ni las más complejas.
+
+Al mismo tiempo, las tareas de mayor índice continuarían siendo realizadas por trabajo, preservando el mecanismo de reincorporación asociado a nuevas tareas.
+
+De manera esquemática,
+
+\[
+\text{automatización intermedia}
+\rightarrow
+\text{desplazamiento de tareas centrales}
+\rightarrow
+L\downarrow,\; s_L\downarrow,
+\]
+
+pero
+
+\[
+N\uparrow
+\rightarrow
+\text{nuevas tareas complejas}
+\rightarrow
+\text{reincorporación del trabajo}.
+\]
+
+### Resultado a comparar
+
+El benchmark del paper implica que la automatización reduce la participación laboral cuando expande efectivamente el conjunto de tareas realizadas por capital.
+
+La extensión permitiría comparar ese resultado con un escenario en el que dos economías automatizan la misma medida de tareas,
+
+\[
+I_H-I_L,
+\]
+
+pero en diferentes posiciones del continuo.
+
+Esto permitiría preguntar si
+
+\[
+\boxed{
+\text{misma cantidad de automatización}
+\not\Rightarrow
+\text{mismo efecto sobre el trabajo}.
+}
+\]
+
+El efecto agregado podría depender no solo de la extensión de la automatización, sino también de la posición de las tareas desplazadas dentro de la estructura productiva.
+
+### Valor agregado
+
+Esta extensión aporta una dimensión que el modelo base abstrae: **la localización de la automatización dentro del continuo de tareas**.
+
+En lugar de estudiar únicamente cuánto avanza la automatización, permite analizar **qué tipo de tareas son automatizadas**.
+
+Esto puede generar:
+
+- mayor heterogeneidad en el efecto sobre empleo;
+- efectos distributivos distintos entre trabajadores;
+- una posible polarización de tareas;
+- diferencias entre automatización de tareas simples, intermedias y complejas;
+- nuevas condiciones para la estabilidad de un sendero de crecimiento balanceado.
+
+La principal dificultad teórica es que la asignación de tareas deja de estar caracterizada por un único umbral \(I^*\), por lo que la estructura del equilibrio se vuelve menos simple y las condiciones para un BGP deben ser reconsideradas.
 La automatización genera **desplazamiento**, mientras que las nuevas tareas generan **reincorporación**. El resultado de largo plazo depende de cuál de estas fuerzas avance relativamente más rápido y de cómo los precios factoriales redirijan los incentivos de innovación.
 
 Por ello, la automatización no implica necesariamente la desaparición del trabajo ni una caída permanente de los salarios. Lo central es cómo evoluciona la frontera de tareas entre capital y trabajo.
