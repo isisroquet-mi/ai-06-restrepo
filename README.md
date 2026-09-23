@@ -1,103 +1,392 @@
-# Repository 1 — Aouad, Lykouris & Zhong (2026)
+# Acemoglu & Restrepo (2018): The Race Between Machine and Man
 
-*Human-AI Productivity Paradoxes: Modeling the Interplay of Skill, Effort, and AI Assistance*
-[arXiv:2605.11350](https://arxiv.org/abs/2605.11350) · [cs.GT]
+Este repositorio estudia **Acemoglu y Restrepo, _The Race Between Machine and Man: Implications of Technology for Growth, Factor Shares and Employment_**, NBER Working Paper No. 22252. Utilizo la versión de **mayo de 2016, revisada en junio de 2017**, que es la versión empleada para la formalización Lean.
 
-> **This is the worked example** for *Artificial Intelligence and Economic
-> Modeling* (UP 2026-II). It shows what a weekly repository looks like when it is
-> done well. Yours does not have to be this long — see "What is required" below.
+## 1. Pregunta
 
----
+El paper pregunta cómo cambia el papel del trabajo cuando el progreso tecnológico puede tomar dos formas opuestas:
 
-## What question the paper answers
+1. **automatización:** tareas que antes realizaba el trabajo pasan a poder ser realizadas por capital;
+2. **creación de nuevas tareas:** aparecen tareas más complejas en las que el trabajo tiene ventaja comparativa.
 
-When does AI assistance make a worker **less** productive?
+La pregunta económica central puede resumirse como
 
-The paper picks one mechanism and pushes it: AI is a **perfectly substitutable
-input**. Skill $s$, effort $e$ and assistance $a$ enter production only through
-their sum, $x = s + e + a$. Nothing else is going on — no learning, no
-complementarity, no contracting. Everything that follows comes from that single
-modelling choice plus a linear cost of effort.
+$$
+\boxed{
+\text{¿Puede la automatización desplazar permanentemente al trabajo,
+o la creación de nuevas tareas genera una fuerza que lo reincorpora?}
+}
+$$
 
-## The agent's problem
+El paper estudia las consecuencias de esta carrera para el **crecimiento, los salarios, el empleo y la participación del trabajo en el ingreso**.
 
-$$\max_{e \ge 0}\; p(s+e+a) - \gamma e$$
+## 2. Cambio de unidad de análisis
 
-with $p$ weakly increasing, concave and twice differentiable, $\gamma > 0$, and
-one constraint that turns out to carry the whole result: $e \ge 0$.
+A diferencia de los artículos anteriores del curso, donde el objeto central era la decisión de un **agente individual**, aquí la unidad de análisis es la **economía agregada**.
 
-## The main result, with all its conditions
+Por ello, no existe un único problema individual que produzca el resultado principal. El equilibrio surge de la interacción entre:
 
-Let $x^{*}$ be the **largest** maximiser of $p(x) - \gamma x$:
+- hogares, que deciden consumo, ahorro y oferta de trabajo;
+- firmas, que deciden con qué factor producir cada tarea;
+- innovadores y científicos, que deciden si dirigir recursos hacia automatización o hacia la creación de nuevas tareas.
 
-$$x^{*} = \max \arg\max_{x} \left[\, p(x) - \gamma x \,\right]$$
+El objeto central deja de ser únicamente una elección individual y pasa a ser la **asignación endógena de un continuo de tareas entre capital y trabajo**.
 
-This requires a **regularity condition**, without which $x^{*}$ need not exist:
+## 3. Marco de tareas
 
-$$\limsup_{x \to \infty} \frac{p(x)}{x} < \gamma$$
+La producción final combina un continuo de tareas de medida uno,
 
-**Proposition 2.1.** Under those conditions,
+$$
+i\in[N-1,N].
+$$
 
-$$e^{*}(s,a) = \left(x^{*} - s - a\right)_{+}, \qquad
-  p^{*}(s,a) = \max\left\{ p(x^{*}),\, p(s+a) \right\}$$
+El parámetro $N$ representa la frontera de tareas. Cuando aumenta $N$, aparece una nueva tarea más compleja y se reemplaza una tarea antigua.
 
-*Intuition in one sentence:* the agent has a single target level of total input,
-tops it up with effort, and once skill plus AI already reach it he stops working.
+La productividad del trabajo en una tarea $i$ es $\gamma(i)$ y se supone creciente:
 
-Two things worth noticing about the proof. It is a **case split** — interior
-versus corner — and contains **no differentiation at all**; and the largest-argmax
-tie-break is not decoration, it is what makes $e^{*}$ well defined when
-$p(x)-\gamma x$ has a flat maximum.
+$$
+\gamma'(i)>0.
+$$
 
-## Sections 3–5: stated, not derived
+Por tanto, el trabajo tiene ventaja comparativa en las tareas de mayor índice.
 
-The three headline results — the deskilling paradox, the unreliability paradox
-and skill polarisation — use machinery well beyond Section 2: a continuous-time
-birth–death Markov chain and its steady state, Arrow–Pratt risk aversion applied
-to a *production* function with IARA/DARA driving the sign, and Bayesian updating
-over a binary signal. They are worth understanding; they are not worth trying to
-reproduce in a week. See `extra/tutorial-alz-completo.pdf` for the full walk.
+La tecnología de automatización está representada por $I$. Las tareas
 
----
+$$
+i\leq I
+$$
 
-## What is in this repository
+pueden producirse usando capital, mientras que las tareas
 
-| File | What it is |
-|---|---|
-| `README.md` | This page |
-| `prompts.md` | The full LLM conversation, unedited |
-| `extensions.md` | Which assumptions could be relaxed, and which are dead ends |
-| `hand/` | The derivation of Proposition 2.1, written out by hand |
-| `presentation.tex` / `.pdf` | The 5-minute Beamer deck |
-| `paper/` | The article itself |
-| `extra/` | Above the floor: a full tutorial of the paper and two lecture decks |
+$$
+i>I
+$$
 
-## What is required
+deben producirse con trabajo.
 
-Only four things. The rest of this repository is above the floor.
+Sin embargo, que una tarea sea técnicamente automatizable no significa que necesariamente sea producida con capital. Las firmas comparan el costo del capital,
 
-1. **`README.md`** — one page: the question, the agent's problem, the main result
-   **with all its conditions**.
-2. **`prompts.md`** — your prompts and the answers, **raw**. Do not tidy them up:
-   the value is in seeing where the model went wrong.
-3. **`hand/`** — at least one photograph of something you derived by hand. Not the
-   whole paper: the one step you did not believe until you did it yourself.
-4. **`presentation.tex` / `.pdf`** — the 5-minute deck, source and compiled.
+$$
+R,
+$$
 
-Deadline is **Thursday 22:00**, work merged into `main` through a pull request,
-and the repository URL posted as a comment on that week's issue.
+con el costo efectivo del trabajo,
 
-## About `hand/`
+$$
+\frac{W}{\gamma(i)}.
+$$
 
-`hand/prop-2-1-derivacion-a-mano.pdf` is three phone photos of a notebook page.
-That is exactly the standard: crooked, with crossings-out, no transcription. What
-it shows is the first-order condition and the interior-versus-corner split written
-out step by step — the part I did not want to take on trust.
+Existe entonces un umbral $\widetilde I$ definido por
 
-## About the LLM conversation
+$$
+\frac{W}{R}=\gamma(\widetilde I).
+$$
 
-`prompts.md` is the export of the session that produced the tutorial in `extra/`.
-Read it for what it gets wrong as much as for what it gets right. The episode
-worth studying is on slide 4 of the presentation: asked for "the most natural
-extension", the model confidently proposed relaxing the linear cost — which the
-authors had already done in Appendix D. It took opening the appendix to find out.
+El umbral efectivamente observado es
+
+$$
+\boxed{
+I^*=\min\{I,\widetilde I\}.
+}
+$$
+
+Así,
+
+$$
+i\leq I^*
+\quad\Rightarrow\quad
+\text{capital},
+$$
+
+mientras que
+
+$$
+i>I^*
+\quad\Rightarrow\quad
+\text{trabajo}.
+$$
+
+Este umbral conecta directamente **precios factoriales, tecnología y asignación de tareas**.
+
+## 4. Las dos fuerzas: desplazamiento y reincorporación
+
+### Desplazamiento
+
+Cuando aumenta $I$ y la restricción tecnológica es vinculante,
+
+$$
+I^*=I<\widetilde I,
+$$
+
+una mayor cantidad de tareas pasa del trabajo al capital.
+
+Esto genera un **efecto desplazamiento**:
+
+$$
+\text{automatización}
+\rightarrow
+\text{menos tareas para el trabajo}
+\rightarrow
+\frac{W}{R}\downarrow,
+\quad
+s_L\downarrow,
+\quad
+L\downarrow.
+$$
+
+La participación laboral disminuye de manera inequívoca en este caso.
+
+El efecto sobre el salario, sin embargo, no es necesariamente negativo. La automatización también abarata la producción y aumenta la productividad. En la Proposición 3,
+
+$$
+d\ln W
+=
+\underbrace{d\ln Y|_{K,L}}_{\text{efecto productividad}}
+-
+\underbrace{
+(1-s_L)
+\frac{\Lambda_I}{\widehat\sigma+\varepsilon_L}dI
+}_{\text{efecto desplazamiento}}.
+$$
+
+Por tanto,
+
+$$
+\boxed{
+dW>0
+\iff
+\text{efecto productividad}
+>
+\text{efecto desplazamiento}.
+}
+$$
+
+La automatización puede entonces aumentar la productividad y, al mismo tiempo, reducir la participación del trabajo; su efecto sobre el salario es ambiguo en el corto plazo.
+
+### Reincorporación
+
+La segunda fuerza aparece cuando aumenta $N$.
+
+La creación de nuevas tareas amplía el conjunto de actividades en las que el trabajo tiene ventaja comparativa:
+
+$$
+\text{nuevas tareas}
+\rightarrow
+\text{más tareas para el trabajo}
+\rightarrow
+\frac{W}{R}\uparrow,
+\quad
+s_L\uparrow,
+\quad
+L\uparrow.
+$$
+
+Esta es la fuerza de **reincorporación del trabajo** que contrarresta el desplazamiento generado por la automatización.
+
+La dinámica relevante del modelo puede resumirse mediante
+
+$$
+n(t)=N(t)-I(t).
+$$
+
+Un menor $n$ significa que la automatización ha avanzado relativamente más rápido que la creación de nuevas tareas.
+
+## 5. Cambio tecnológico endógeno
+
+Hay una cantidad fija $S$ de científicos que puede dedicarse a automatizar tareas o a crear nuevas tareas:
+
+$$
+S_I(t)+S_N(t)\leq S.
+$$
+
+Las fronteras tecnológicas evolucionan según
+
+$$
+\dot I(t)=\kappa_I S_I(t),
+$$
+
+$$
+\dot N(t)=\kappa_N S_N(t).
+$$
+
+Los científicos se asignan según el valor económico de cada innovación. Si $V_I$ es el valor de automatizar y $V_N$ el valor de crear una nueva tarea, un equilibrio interior requiere
+
+$$
+\boxed{
+\kappa_I v_I(n)=\kappa_N v_N(n).
+}
+$$
+
+Esta condición determina la dirección endógena del cambio tecnológico.
+
+## 6. Resultado principal
+
+La **Proposición 6** caracteriza los senderos de crecimiento balanceado cuando la dirección del cambio tecnológico es endógena.
+
+El resultado requiere:
+
+1. **Assumption 1':**
+
+$$
+\gamma(i)=e^{Ai},
+\qquad A>0,
+$$
+
+de modo que la productividad laboral crece exponencialmente con la complejidad de las tareas.
+
+2. **Assumption 2:** una de las siguientes condiciones:
+
+$$
+\eta\rightarrow0
+\qquad\text{o}\qquad
+\zeta=1,
+$$
+
+lo que permite trabajar con demandas homotéticas de capital y trabajo.
+
+3. **Assumption 4:**
+
+$$
+\widehat\sigma>\zeta,
+$$
+
+de modo que las innovaciones dirigidas hacia el factor relativamente más barato sean rentables.
+
+4. Existe un umbral $\bar S$ tal que
+
+$$
+S<\bar S.
+$$
+
+Esta condición evita una tasa de crecimiento excesivamente alta que desincentive la creación de nuevas tareas.
+
+Bajo estas condiciones:
+
+### A. Automatización completa
+
+Si
+
+$$
+\rho<\bar\rho,
+$$
+
+existe un BGP con
+
+$$
+n=0,
+$$
+
+por lo que
+
+$$
+N=I
+$$
+
+y todas las tareas son producidas por capital.
+
+Es el caso extremo en el que el trabajo se vuelve redundante.
+
+### B. Equilibrio interior único
+
+Si
+
+$$
+\rho>\bar\rho
+$$
+
+y la productividad relativa de la investigación en automatización es suficientemente alta,
+
+$$
+\frac{\kappa_I}{\kappa_N}>\bar\kappa,
+$$
+
+existe un único BGP interior con
+
+$$
+n\in(\bar n(\rho),1)
+$$
+
+y
+
+$$
+\boxed{
+\kappa_Iv_I(n)=\kappa_Nv_N(n).
+}
+$$
+
+En este equilibrio algunas tareas son realizadas por capital y otras por trabajo.
+
+Además:
+
+- si $\theta=0$, el BGP es globalmente estable en sentido saddle-path;
+- si $\theta>0$, el equilibrio es único localmente y asintóticamente estable alrededor del BGP.
+
+### C. Múltiples BGP
+
+Si
+
+$$
+\underline{\kappa}
+<
+\frac{\kappa_I}{\kappa_N}
+<
+\bar\kappa,
+$$
+
+pueden existir múltiples senderos de crecimiento balanceado.
+
+### D. Sin automatización
+
+Si
+
+$$
+\frac{\kappa_I}{\kappa_N}
+<
+\underline{\kappa},
+$$
+
+existe un único BGP con
+
+$$
+n=1,
+$$
+
+en el cual todas las tareas son producidas por trabajo.
+
+## 7. Intuición del resultado principal
+
+El resultado más importante no es simplemente que "las máquinas reemplazan trabajadores".
+
+En el BGP interior aparece una fuerza de corrección:
+
+$$
+\text{más automatización}
+\rightarrow
+\text{menos tareas realizadas por trabajo}
+\rightarrow
+\text{cambian los precios factoriales}
+\rightarrow
+\text{automatizar otra tarea se vuelve relativamente menos rentable}
+\rightarrow
+\text{crear nuevas tareas se vuelve relativamente más atractivo}.
+$$
+
+Por ello, **desplazamiento y reincorporación operan simultáneamente**.
+
+Un shock transitorio que acelera la automatización puede activar estas fuerzas y hacer que empleo y participación laboral regresen hacia su nivel inicial. En cambio, un cambio permanente en la frontera de posibilidades de innovación que haga relativamente más fácil automatizar —un aumento de $\kappa_I/\kappa_N$— conduce a un nuevo BGP con menor $n$, menor empleo y menor participación laboral.
+
+## 8. Conclusión
+
+El paper reemplaza la visión de una carrera puramente destructiva entre trabajadores y máquinas por una carrera entre **dos tipos de cambio tecnológico**:
+
+$$
+\boxed{
+\text{automatización}
+\quad\text{vs.}\quad
+\text{creación de nuevas tareas}.
+}
+$$
+
+La automatización genera **desplazamiento**, mientras que las nuevas tareas generan **reincorporación**. El resultado de largo plazo depende de cuál de estas fuerzas avance relativamente más rápido y de cómo los precios factoriales redirijan los incentivos de innovación.
+
+Por ello, la automatización no implica necesariamente la desaparición del trabajo ni una caída permanente de los salarios. Lo central es cómo evoluciona la frontera de tareas entre capital y trabajo.
